@@ -1,8 +1,7 @@
 package PresentationLayer;
 
-import BusinessLogicLayer.AdvertManager;
 import BusinessLogicLayer.ReservationManager;
-import Entities.Advert;
+import Entities.Reservation;
 
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
@@ -11,56 +10,47 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.List;
 
-public class HomeForm extends JFrame {
-
-    private JLabel jlAdverts;
-    private JTable jtAdverts;
-    private JPanel HomePanel;
+public class MyReservationsForm extends JFrame{
+    private JButton btnLogout;
     private JButton btnAdverts;
     private JButton btnMyAdverts;
-    private JButton btnReservations;
-    private JButton btnMyReservations;
     private JButton btnCreateAdvert;
-    private JTextField tfAdvertNo;
-    private JTextField tfFirstDate;
-    private JTextField tfLastDate;
-    private JButton btnCreateReservation;
-    private JButton btnLogout;
-    private AdvertManager advertManager = new AdvertManager();
+    private JButton btnMyReservations;
+    private JButton btnReservations;
+    private JTable jtMyReservations;
+    private JPanel MyReservationsPanel;
     private ReservationManager reservationManager = new ReservationManager();
 
-    public HomeForm (int userId){
-        setTitle("Anasayfa");
-        setContentPane(HomePanel);
+    public MyReservationsForm(int userId){
+        setTitle("Rezervasyonlar");
+        setContentPane(MyReservationsPanel);
         setMinimumSize(new Dimension(1000,800));
         setDefaultCloseOperation(DISPOSE_ON_CLOSE);
-        List<Advert> adverts = advertManager.getOtherAdverts(userId);
-        Object [][] data = new Object[adverts.size()][6];
-        for (int i=0; i <= adverts.size()-1;i++){
+        List<Reservation> reservations = reservationManager.getReservations(userId);
+        Object [][] data = new Object[reservations.size()][6];
+        for (int i=0; i <= reservations.size()-1;i++){
             int j = 0;
-            data[i][j]=adverts.get(i).getId();
+            data[i][j]=reservations.get(i).getId();
             j++;
-            data[i][j]=adverts.get(i).getBrand();
+            data[i][j]=reservations.get(i).getAdvertId();
             j++;
-            data[i][j]=adverts.get(i).getModel();
+            data[i][j]=reservations.get(i).getFirstDate();
             j++;
-            data[i][j]=adverts.get(i).getYear();
+            data[i][j]=reservations.get(i).getLastDate();
             j++;
-            data[i][j]=adverts.get(i).getFuelAmount();
-            j++;
-            data[i][j]=adverts.get(i).getPrice();
+            data[i][j]=reservations.get(i).getIsAccepted();
         }
-        jtAdverts.setModel(new DefaultTableModel(
+        jtMyReservations.setModel(new DefaultTableModel(
                 data,
-                new String[]{"İlan Numarası","Marka","Model","Yıl","Yakıt(km)","Kiralama Ücreti"}
+                new String[]{"Rezervasyon Numarası","İlan Numarası","Teslim Alış Tarihi","Teslim Ediş Tarihi","İlan Durumu"}
         ));
         setVisible(true);
 
-        btnAdverts.addActionListener(new ActionListener() {
+        btnMyAdverts.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 setVisible(false);
-                HomeForm homeForm = new HomeForm(userId);
+                MyAdvertsForm myAdvertsForm = new MyAdvertsForm(userId);
             }
         });
 
@@ -71,22 +61,12 @@ public class HomeForm extends JFrame {
                 LoginForm loginForm = new LoginForm();
             }
         });
-        btnCreateReservation.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                boolean status = reservationManager.createReservation(Integer.parseInt(tfAdvertNo.getText()),userId,tfFirstDate.getText(),tfLastDate.getText());
-                if (status){
-                    JOptionPane.showMessageDialog(null,"Rezervasyon İşlemi Başarılı!");
-                    setVisible(false);
-                    HomeForm homeForm = new HomeForm(userId);
-                }
-            }
-        });
-        btnMyAdverts.addActionListener(new ActionListener() {
+
+        btnAdverts.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 setVisible(false);
-                MyAdvertsForm myAdvertsForm = new MyAdvertsForm(userId);
+                HomeForm homeForm = new HomeForm(userId);
             }
         });
 

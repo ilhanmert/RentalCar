@@ -3,15 +3,28 @@ package Entities;
 public class Advert {
     private int Id;
     private int UserId;
-    private int CarId;
-    private String PhotoPath;
+    private String Brand;
+    private String Model;
+    private int Year;
+    private float FuelAmount;
     private float Price;
 
-    public Advert(int Id, int UserId, int CarId, String PhotoPath, float Price){
+    public Advert(int Id, int UserId, String Brand, String Model, int Year, float FuelAmount, float Price){
         this.setId(Id);
         this.setUserId(UserId);
-        this.setCarId(CarId);
-        this.setPhotoPath(PhotoPath);
+        this.setBrand(Brand);
+        this.setModel(Model);
+        this.setYear(Year);
+        this.setFuelAmount(FuelAmount);
+        this.setPrice(Price);
+    }
+
+    public Advert(int UserId,String Brand, String Model, int Year, float FuelAmount, float Price){
+        this.setUserId(UserId);
+        this.setBrand(Brand);
+        this.setModel(Model);
+        this.setYear(Year);
+        this.setFuelAmount(FuelAmount);
         this.setPrice(Price);
     }
 
@@ -31,20 +44,36 @@ public class Advert {
         UserId = userId;
     }
 
-    public int getCarId() {
-        return CarId;
+    public String getBrand() {
+        return Brand;
     }
 
-    public void setCarId(int carId) {
-        CarId = carId;
+    public void setBrand(String brand) {
+        Brand = brand;
     }
 
-    public String getPhotoPath() {
-        return PhotoPath;
+    public String getModel() {
+        return Model;
     }
 
-    public void setPhotoPath(String photoPath) {
-        PhotoPath = photoPath;
+    public void setModel(String model) {
+        Model = model;
+    }
+
+    public int getYear() {
+        return Year;
+    }
+
+    public void setYear(int year) {
+        Year = year;
+    }
+
+    public float getFuelAmount() {
+        return FuelAmount;
+    }
+
+    public void setFuelAmount(float fuelAmount) {
+        FuelAmount = fuelAmount;
     }
 
     public float getPrice() {

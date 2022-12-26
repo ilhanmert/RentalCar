@@ -1,7 +1,5 @@
 package Entities;
 
-import java.util.Date;
-
 public class Reservation {
     private int Id;
     private int AdvertId;
@@ -9,9 +7,9 @@ public class Reservation {
     private int CustomerId;
     private String FirstDate;
     private String LastDate;
-    private boolean IsAccepted;
+    private String IsAccepted;
 
-    public Reservation(int Id, int AdvertId, int CarOwnerId, int CustomerId, String FirstDate, String LastDate, boolean IsAccepted){
+    public Reservation(int Id, int AdvertId, int CarOwnerId, int CustomerId, String FirstDate, String LastDate, String IsAccepted){
         this.setId(Id);
         this.setAdvertId(AdvertId);
         this.setCarOwnerId(CarOwnerId);
@@ -70,11 +68,11 @@ public class Reservation {
         LastDate = lastDate;
     }
 
-    public boolean isAccepted() {
-        return IsAccepted;
+    public void setIsAccepted(String accepted) {
+        IsAccepted = accepted;
     }
 
-    public void setIsAccepted(boolean accepted) {
-        IsAccepted = accepted;
+    public String getIsAccepted() {
+        return IsAccepted;
     }
 }

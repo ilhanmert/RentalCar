@@ -1,7 +1,6 @@
 package PresentationLayer;
 
 import BusinessLogicLayer.AdvertManager;
-import BusinessLogicLayer.ReservationManager;
 import Entities.Advert;
 
 import javax.swing.*;
@@ -11,30 +10,25 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.List;
 
-public class HomeForm extends JFrame {
-
-    private JLabel jlAdverts;
-    private JTable jtAdverts;
-    private JPanel HomePanel;
-    private JButton btnAdverts;
-    private JButton btnMyAdverts;
-    private JButton btnReservations;
-    private JButton btnMyReservations;
-    private JButton btnCreateAdvert;
+public class MyAdvertsForm extends JFrame {
     private JTextField tfAdvertNo;
-    private JTextField tfFirstDate;
-    private JTextField tfLastDate;
-    private JButton btnCreateReservation;
+    private JButton btnDeleteAdvert;
+    private JTable jtMyAdverts;
     private JButton btnLogout;
+    private JButton btnCreateAdvert;
+    private JButton btnMyReservations;
+    private JButton btnReservations;
+    private JButton btnMyAdverts;
+    private JButton btnAdverts;
+    private JPanel MyAdvertsPanel;
     private AdvertManager advertManager = new AdvertManager();
-    private ReservationManager reservationManager = new ReservationManager();
 
-    public HomeForm (int userId){
-        setTitle("Anasayfa");
-        setContentPane(HomePanel);
+    public MyAdvertsForm(int userId){
+        setTitle("İlanlarım");
+        setContentPane(MyAdvertsPanel);
         setMinimumSize(new Dimension(1000,800));
         setDefaultCloseOperation(DISPOSE_ON_CLOSE);
-        List<Advert> adverts = advertManager.getOtherAdverts(userId);
+        List<Advert> adverts = advertManager.getAdvertsByUserId(userId);
         Object [][] data = new Object[adverts.size()][6];
         for (int i=0; i <= adverts.size()-1;i++){
             int j = 0;
@@ -50,7 +44,7 @@ public class HomeForm extends JFrame {
             j++;
             data[i][j]=adverts.get(i).getPrice();
         }
-        jtAdverts.setModel(new DefaultTableModel(
+        jtMyAdverts.setModel(new DefaultTableModel(
                 data,
                 new String[]{"İlan Numarası","Marka","Model","Yıl","Yakıt(km)","Kiralama Ücreti"}
         ));
@@ -71,17 +65,18 @@ public class HomeForm extends JFrame {
                 LoginForm loginForm = new LoginForm();
             }
         });
-        btnCreateReservation.addActionListener(new ActionListener() {
+        btnDeleteAdvert.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                boolean status = reservationManager.createReservation(Integer.parseInt(tfAdvertNo.getText()),userId,tfFirstDate.getText(),tfLastDate.getText());
+                boolean status = advertManager.delete(Integer.parseInt(tfAdvertNo.getText()));
                 if (status){
-                    JOptionPane.showMessageDialog(null,"Rezervasyon İşlemi Başarılı!");
+                    JOptionPane.showMessageDialog(null,"İlan Silme İşlemi Başarılı!");
                     setVisible(false);
-                    HomeForm homeForm = new HomeForm(userId);
+                    MyAdvertsForm myAdvertsForm = new MyAdvertsForm(userId);
                 }
             }
         });
+
         btnMyAdverts.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
