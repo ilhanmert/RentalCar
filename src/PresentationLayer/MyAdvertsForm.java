@@ -1,8 +1,6 @@
 package PresentationLayer;
 
 import BusinessLogicLayer.AdvertManager;
-import BusinessLogicLayer.ReservationManager;
-import BusinessLogicLayer.UserManager;
 import Entities.Advert;
 
 import javax.swing.*;
@@ -23,9 +21,7 @@ public class MyAdvertsForm extends JFrame {
     private JButton btnMyAdverts;
     private JButton btnAdverts;
     private JPanel MyAdvertsPanel;
-    private UserManager userManager = new UserManager();
     private AdvertManager advertManager = new AdvertManager();
-    private ReservationManager reservationManager = new ReservationManager();
 
     public MyAdvertsForm(int userId){
         setTitle("İlanlarım");

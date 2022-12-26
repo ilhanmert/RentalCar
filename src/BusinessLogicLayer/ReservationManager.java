@@ -1,7 +1,6 @@
 package BusinessLogicLayer;
 
 import DataAccessLayer.PostgreSQL.Database;
-import Entities.Advert;
 import Entities.Reservation;
 
 import java.sql.ResultSet;

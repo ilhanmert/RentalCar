@@ -2,16 +2,13 @@ package PresentationLayer;
 
 import BusinessLogicLayer.AdvertManager;
 import BusinessLogicLayer.ReservationManager;
-import BusinessLogicLayer.UserManager;
 import Entities.Advert;
-import Entities.User;
 
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.util.ArrayList;
 import java.util.List;
 
 public class HomeForm extends JFrame {
@@ -29,7 +26,6 @@ public class HomeForm extends JFrame {
     private JTextField tfLastDate;
     private JButton btnCreateReservation;
     private JButton btnLogout;
-    private UserManager userManager = new UserManager();
     private AdvertManager advertManager = new AdvertManager();
     private ReservationManager reservationManager = new ReservationManager();
 

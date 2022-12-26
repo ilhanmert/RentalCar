@@ -1,9 +1,6 @@
 package PresentationLayer;
 
-import BusinessLogicLayer.AdvertManager;
 import BusinessLogicLayer.ReservationManager;
-import BusinessLogicLayer.UserManager;
-import Entities.Advert;
 import Entities.Reservation;
 
 import javax.swing.*;
@@ -25,8 +22,6 @@ public class ReservationsForm extends JFrame {
     private JButton btnAccept;
     private JButton btnDelete;
     private JPanel ReservationsPanel;
-    private UserManager userManager = new UserManager();
-    private AdvertManager advertManager = new AdvertManager();
     private ReservationManager reservationManager = new ReservationManager();
 
     public ReservationsForm(int userId){
