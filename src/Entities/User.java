@@ -9,6 +9,10 @@ public class User {
     private String PhoneNumber;
     private String UserType;
 
+    public User (){
+
+    }
+
     public User(int Id, String Name, String Surname, String Mail, String Password, String PhoneNumber, String UserType){
         this.setId(Id);
         this.setName(Name);
@@ -17,6 +21,14 @@ public class User {
         this.setPassword(Password);
         this.setPhoneNumber(PhoneNumber);
         this.setUserType(UserType);
+    }
+
+    public User(String Name, String Surname, String Mail, String Password, String PhoneNumber){
+        this.setName(Name);
+        this.setSurname(Surname);
+        this.setMail(Mail);
+        this.setPassword(Password);
+        this.setPhoneNumber(PhoneNumber);
     }
 
 

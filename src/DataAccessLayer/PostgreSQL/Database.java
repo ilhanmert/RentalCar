@@ -45,7 +45,7 @@ public class Database {
     * surname -> kullanıcının soyadı / mail -> kullanıcının maili
     * password -> kullanıcının şifrelenmiş şifresi / phoneNumber -> kullanıcının telefon numarası*/
     public ResultSet createUser(String name, String surname, String mail, String password, String phoneNumber){
-        String sql = "SELECT * FROM public.createuser('"+name+"','"+surname+"','"+mail+"','"+password+"','"+phoneNumber+"',' '";
+        String sql = "SELECT * FROM public.createuser('"+name+"','"+surname+"','"+mail+"','"+password+"','"+phoneNumber+"','customer')";
         try {
             Statement statement = conn.createStatement();
             ResultSet resultSet = statement.executeQuery(sql);
@@ -80,7 +80,7 @@ public class Database {
 
     /*Kullanıcıya ait ilanları databaseden çeken fonksiyon - userId -> işlemi yapan kullanıcının ID*/
     public ResultSet getAdvertsByUserId(int userId){
-        String sql = "SELECT * FROM public.getadverts("+userId+")";
+        String sql = "SELECT * FROM public.getadvertsbyuserid("+userId+")";
         try {
             Statement statement = conn.createStatement();
             ResultSet resultSet = statement.executeQuery(sql);
@@ -106,8 +106,8 @@ public class Database {
     * advertId -> ilan ID / brand -> ilandaki arabanın markası / model -> ilandaki arabanın modeli
     * year -> ilandaki arabanın üretim yılı / fuelAmount -> ilandaki arabanın km başına yaktığı yakıt miktarı
     * photoPath -> ilandaki arabanın fotoğrafının yolu / price -> ilanın ücreti  */
-    public ResultSet updateAdvert(int advertId, String brand, String model, int year, float fuelAmount, String photoPath, float price){
-        String sql = "SELECT * FROM public.updateadvert("+advertId+",'"+brand+"','"+model+"',"+year+","+fuelAmount+",'"+photoPath+"',"+price+")";
+    public ResultSet updateAdvert(int advertId, String brand, String model, int year, float fuelAmount, float price){
+        String sql = "SELECT * FROM public.updateadvert("+advertId+",'"+brand+"','"+model+"',"+year+","+fuelAmount+","+price+")";
         try {
             Statement statement = conn.createStatement();
             ResultSet resultSet = statement.executeQuery(sql);
@@ -122,8 +122,8 @@ public class Database {
     * model -> ilana girilen aracın modeli / year -> ilana girilen aracın yılı
     * fuelAmount -> ilana girilen aracın km başına yakıt miktarı / photoPath -> ilana girilen aracın fotoğrafının yolu
     * price -> ilanın ücreti*/
-    public ResultSet createAdvert(int userId, String brand, String model, int year, float fuelAmount, String photoPath, float price){
-        String sql = "SELECT * FROM public.createadvert("+userId+",'"+brand+"','"+model+"',"+year+","+fuelAmount+",'"+photoPath+"',"+price+")";
+    public ResultSet createAdvert(int userId, String brand, String model, int year, float fuelAmount, float price){
+        String sql = "SELECT * FROM public.createadvert("+userId+",'"+brand+"','"+model+"',"+year+","+fuelAmount+","+price+")";
         try {
             Statement statement = conn.createStatement();
             ResultSet resultSet = statement.executeQuery(sql);

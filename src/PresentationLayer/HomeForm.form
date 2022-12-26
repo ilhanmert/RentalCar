@@ -128,7 +128,14 @@
             <children>
               <component id="fc784" class="javax.swing.JTable" binding="jtAdverts">
                 <constraints/>
-                <properties/>
+                <properties>
+                  <autoResizeMode value="2"/>
+                  <enabled value="true"/>
+                  <fillsViewportHeight value="false"/>
+                  <preferredScrollableViewportSize width="800" height="600"/>
+                  <showHorizontalLines value="true"/>
+                  <showVerticalLines value="true"/>
+                </properties>
               </component>
             </children>
           </scrollpane>
